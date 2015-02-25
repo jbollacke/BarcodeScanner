@@ -35,7 +35,7 @@ public class BarcodeScanner extends CordovaPlugin {
     private static final String TEXT = "text";
     private static final String DATA = "data";
     private static final String TYPE = "type";
-    private static final String SCAN_INTENT = "com.phonegap.plugins.barcodescanner.SCAN";
+    private static final String SCAN_INTENT = "com.google.zxing.client.android.SCAN";
     private static final String ENCODE_DATA = "ENCODE_DATA";
     private static final String ENCODE_TYPE = "ENCODE_TYPE";
     private static final String ENCODE_INTENT = "com.phonegap.plugins.barcodescanner.ENCODE";
@@ -111,6 +111,7 @@ public class BarcodeScanner extends CordovaPlugin {
         intentScan.addCategory(Intent.CATEGORY_DEFAULT);
         // avoid calling other phonegap apps
         intentScan.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
+        intentScan.putExtra("SCAN_FORMATS", "QR_CODE");
 
         this.cordova.startActivityForResult((CordovaPlugin) this, intentScan, REQUEST_CODE);
     }
